@@ -75,7 +75,10 @@ if (!jQuery.support.cors && window.XDomainRequest) {
           };
           var postData = (userOptions.data && $.param(userOptions.data)) || '';
           xdr.open(options.type, options.url);
-          xdr.send(postData);
+          xdr.onprogress = function () { };
+       setTimeout(function () {
+         xdr.send(postData);
+       }, 0);
         },
         abort: function(){
           if (xdr) {
